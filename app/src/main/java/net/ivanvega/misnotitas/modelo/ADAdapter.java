@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class ADAdapter extends SQLiteOpenHelper {
+    private final int DB_VERSION=1;
     private final String  SCRIPT_DB = "create table NotaTarea (" +
             "_id integer primary key, titulo text not null," +
             "descripcion text, tipo integer, " +
@@ -24,6 +25,7 @@ public class ADAdapter extends SQLiteOpenHelper {
             "fecha-hora) text  not null";
 
     public ADAdapter(Context context, int version) {
+
         super(context, "db", null, version);
     }
 

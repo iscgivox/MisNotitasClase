@@ -12,6 +12,31 @@ public class NotaTarea {
     int tipo;
     String hora_fecha;
 
+    public NotaTarea() {
+
+    }
+
+
+    public int getHora_fecha_vencimiento() {
+        return hora_fecha_vencimiento;
+    }
+
+    public void setHora_fecha_vencimiento(int hora_fecha_vencimiento) {
+        this.hora_fecha_vencimiento = hora_fecha_vencimiento;
+    }
+
+    private int hora_fecha_vencimiento;
+
+    public NotaTarea(int id, String titulo, String descripcion,
+                     int tipo, String hora_fecha, int hora_fecha_vencimiento) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.hora_fecha = hora_fecha;
+        this.hora_fecha_vencimiento = hora_fecha_vencimiento;
+    }
+
     public int getId() {
         return id;
     }
@@ -52,15 +77,9 @@ public class NotaTarea {
         this.hora_fecha = hora_fecha;
     }
 
-    public String getHora_fecha_vencimiento() {
-        return hora_fecha_vencimiento;
-    }
 
-    public void setHora_fecha_vencimiento(String hora_fecha_vencimiento) {
-        this.hora_fecha_vencimiento = hora_fecha_vencimiento;
-    }
 
-    String hora_fecha_vencimiento;
+
 
 
 }
