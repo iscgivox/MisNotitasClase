@@ -3,6 +3,7 @@ package net.ivanvega.misnotitas;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import net.ivanvega.misnotitas.modelo.ADAdapter;
+import net.ivanvega.misnotitas.modelo.NotaTarea;
+import net.ivanvega.misnotitas.modelo.NotasTareaDAO;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,9 +34,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
 
+                insertarNotaTarea(view);
             }
         });
 
@@ -44,7 +48,26 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ADAdapter db = new ADAdapter(this, 1);
+
+
+
+
+    }
+
+    private void insertarNotaTarea(View v) {
+        NotasTareaDAO dao = new
+                NotasTareaDAO(this);
+
+        NotaTarea nt =
+                new NotaTarea(0,"Proy. Final",
+                        "Se levantan los muertos",
+                        0,"2016-11-01 07:26:00",0);
+
+        if( dao.insert(nt)>0){
+            Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+
     }
 
     @Override
@@ -89,8 +112,9 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
 
+        } else if (id == R.id.nav_slideshow) {
+            obtenerNotasTarea();
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
@@ -102,5 +126,20 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void obtenerNotasTarea() {
+        NotasTareaDAO dao =
+                new NotasTareaDAO(this);
+        List<NotaTarea> lst = dao.getAll();
+
+        for(NotaTarea item : lst) {
+            Log.d("NOTATAREA", "id: " + item.getId() +
+                    "titulo: " + item.getTitulo() +
+                    "fecha: " + item.getHora_fecha() +
+                    "fecha-vence: " + String.valueOf( item.getHora_fecha_vencimiento())
+            );
+        }
+
     }
 }

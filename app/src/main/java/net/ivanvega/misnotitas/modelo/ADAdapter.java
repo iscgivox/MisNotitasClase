@@ -13,8 +13,8 @@ public class ADAdapter extends SQLiteOpenHelper {
     private final String  SCRIPT_DB = "create table NotaTarea (" +
             "_id integer primary key, titulo text not null," +
             "descripcion text, tipo integer, " +
-            "fecha-hora text," +
-            "fecha-hora-vencimineto integer); " +
+            "fecha_hora text," +
+            "fecha_hora_vencimineto integer); " +
             "create table multimedia (" +
             "_idNotaTarea  integer references NotaTarea(_id), " +
             "titulo text, " +
@@ -22,7 +22,7 @@ public class ADAdapter extends SQLiteOpenHelper {
             "uri text not null" +
             ");" +
             "create table recordatorios (_idNotaTarea integer reference NotaTarea(_id)," +
-            "fecha-hora) text  not null";
+            "fecha_hora) text  not null";
 
     public ADAdapter(Context context, int version) {
 

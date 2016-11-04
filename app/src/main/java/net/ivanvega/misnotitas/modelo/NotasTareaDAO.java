@@ -18,7 +18,7 @@ public class NotasTareaDAO {
     public static final String TABLE_NAME = "NotaTarea";
     public static final String[] COLUMNS =
             new String[]{"_id", "titulo", "descripcion",
-                    "tipo", "fecha-hora", "fecha-hora-vencimineto"};
+                    "tipo", "fecha_hora", "fecha_hora_vencimineto"};
 
 
     SQLiteDatabase _db;
@@ -32,7 +32,7 @@ public class NotasTareaDAO {
     public int insert(NotaTarea nt){
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMNS[0], 0);
+
         cv.put(COLUMNS[1], nt.getTitulo());
         cv.put(COLUMNS[2], nt.getDescripcion());
         cv.put(COLUMNS[3], nt.getTipo());
